@@ -2,46 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://yizenglistat.github.io/blog/post/creating-a-new-theme/</loc>
+    <loc>http://www.yizengli.com/post/creating-a-new-theme/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/post/migrate-from-jekyll/</loc>
+    <loc>http://www.yizengli.com/post/migrate-from-jekyll/</loc>
     <lastmod>2014-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/</loc>
+    <loc>http://www.yizengli.com/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/post/</loc>
+    <loc>http://www.yizengli.com/post/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/about/</loc>
+    <loc>http://www.yizengli.com/about/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/post/goisforlovers/</loc>
+    <loc>http://www.yizengli.com/post/goisforlovers/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/tags/development/</loc>
+    <loc>http://www.yizengli.com/tags/development/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/post/hugoisforlovers/</loc>
+    <loc>http://www.yizengli.com/post/hugoisforlovers/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/tags/go/</loc>
+    <loc>http://www.yizengli.com/tags/go/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/tags/golang/</loc>
+    <loc>http://www.yizengli.com/tags/golang/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/tags/hugo/</loc>
+    <loc>http://www.yizengli.com/tags/hugo/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/tags/</loc>
+    <loc>http://www.yizengli.com/tags/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/tags/templates/</loc>
+    <loc>http://www.yizengli.com/tags/templates/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://yizenglistat.github.io/blog/tags/themes/</loc>
+    <loc>http://www.yizengli.com/tags/themes/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url>
 </urlset>
