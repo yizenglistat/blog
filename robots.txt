@@ -1,3 +1,3 @@
 User-agent: *
 
-Sitemap: http://www.yizengli.com/sitemap.xml
+Sitemap: https://yizengli.com//sitemap.xml

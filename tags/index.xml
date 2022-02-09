@@ -1,63 +1,81 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on My Research Blog</title>
-    <link>http://www.yizengli.com/tags/</link>
-    <description>Recent content in Tags on My Research Blog</description>
+    <title>Tags on Blog</title>
+    <link>https://yizengli.com/tags/</link>
+    <description>Recent content in Tags on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="http://www.yizengli.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>development</title>
-      <link>http://www.yizengli.com/tags/development/</link>
+      <title>Development</title>
+      <link>https://yizengli.com/tags/development/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.yizengli.com/tags/development/</guid>
+      <guid>https://yizengli.com/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>go</title>
-      <link>http://www.yizengli.com/tags/go/</link>
+      <title>Go</title>
+      <link>https://yizengli.com/tags/go/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.yizengli.com/tags/go/</guid>
+      <guid>https://yizengli.com/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>golang</title>
-      <link>http://www.yizengli.com/tags/golang/</link>
+      <title>Golang</title>
+      <link>https://yizengli.com/tags/golang/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.yizengli.com/tags/golang/</guid>
+      <guid>https://yizengli.com/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>hugo</title>
-      <link>http://www.yizengli.com/tags/hugo/</link>
+      <title>Hugo</title>
+      <link>https://yizengli.com/tags/hugo/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.yizengli.com/tags/hugo/</guid>
+      <guid>https://yizengli.com/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>templates</title>
-      <link>http://www.yizengli.com/tags/templates/</link>
+      <title>Templates</title>
+      <link>https://yizengli.com/tags/templates/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.yizengli.com/tags/templates/</guid>
+      <guid>https://yizengli.com/tags/templates/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>themes</title>
-      <link>http://www.yizengli.com/tags/themes/</link>
+      <title>Themes</title>
+      <link>https://yizengli.com/tags/themes/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.yizengli.com/tags/themes/</guid>
+      <guid>https://yizengli.com/tags/themes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Neural Networks</title>
+      <link>https://yizengli.com/tags/neural-networks/</link>
+      <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://yizengli.com/tags/neural-networks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://yizengli.com/tags/python/</link>
+      <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://yizengli.com/tags/python/</guid>
       <description></description>
     </item>
     

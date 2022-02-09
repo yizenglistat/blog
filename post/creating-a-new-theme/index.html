@@ -4,24 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Creating a New Theme | My Research Blog</title>
+<title>A Testing Article | Blog</title>
 
-<meta property='og:title' content='Creating a New Theme - My Research Blog'>
-<meta property='og:description' content='Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&rsquo;t cover using CSS to style your theme.
-We&rsquo;ll start with creating a new site with a very basic template.'>
-<meta property='og:url' content='http://www.yizengli.com/post/creating-a-new-theme/'>
-<meta property='og:site_name' content='My Research Blog'>
-<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/cf2de3a208b38be3a24cfe6124c52cc9?s=256'><meta property='article:section' content='Post'><meta property='article:published_time' content='2014-09-28T00:00:00Z'><meta property='article:modified_time' content='2014-09-28T00:00:00Z'><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@'><meta name='twitter:creator' content='@'>
+<meta property='og:title' content='A Testing Article - Blog'>
+<meta property='og:description' content='This is a test file for summary!'>
+<meta property='og:url' content='https://yizengli.com/post/creating-a-new-theme/'>
+<meta property='og:site_name' content='Blog'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/cf2de3a208b38be3a24cfe6124c52cc9?s=256'><meta property='article:section' content='Post'><meta property='article:tag' content='Python'><meta property='article:tag' content='Neural Networks'><meta property='article:published_time' content='2012-09-28T00:00:00Z'><meta property='article:modified_time' content='2012-09-28T00:00:00Z'><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@'><meta name='twitter:creator' content='@'>
 
 
-<link href="http://www.yizengli.com/index.xml" rel="alternate" type="application/rss+xml" title="My Research Blog">
+<link href="https://yizengli.com/index.xml" rel="alternate" type="application/rss+xml" title="Blog">
 
-<link rel="stylesheet" href="/css/style.css"><link rel='stylesheet' href='http://www.yizengli.com/css/custom.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/style.css"><link rel='stylesheet' href='https://yizengli.com/css/custom.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="canonical" href="http://www.yizengli.com/post/creating-a-new-theme/">
+<link rel="canonical" href="https://yizengli.com/post/creating-a-new-theme/">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 </head>
@@ -30,15 +29,21 @@ We&rsquo;ll start with creating a new site with a very basic template.'>
   <div class="container">
     <nav id="nav-main" class="nav">
       <div id="nav-name" class="nav-left">
-        <a id="nav-anchor" class="nav-item" href="http://www.yizengli.com">
-          <h1 id="nav-heading" class="title is-4">My Research Blog</h1>
-        </a>
+        
+        
+          <a id="nav-anchor" class="nav-item" href="/">
+          <h1 id="nav-heading" class="title is-4">Home</h1>
+        
+          <a id="nav-anchor" class="nav-item" href="/tags/">
+          <h1 id="nav-heading" class="title is-4">Tags</h1>
+        
+      
       </div>
       <div class="nav-right">
         <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="github" href='https://github.com/yizenglistat'
             target='_blank' rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+              <i class><svg viewbox='0 0 24 24'  stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
     
     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
     
@@ -47,7 +52,7 @@ We&rsquo;ll start with creating a new site with a very basic template.'>
           </a><a class="level-item" aria-label="email" href='mailto:1994yizeng@gmail.com'
             target='_blank' rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+              <i class><svg viewbox='0 0 24 24'  stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
     
     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
     <polyline points="22,6 12,13 2,6"/>
@@ -57,7 +62,7 @@ We&rsquo;ll start with creating a new site with a very basic template.'>
           </a><a class="level-item" aria-label="rss" href='/index.xml'
             target='_blank' rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+              <i class><svg viewbox='0 0 24 24'  stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
     
     <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
     
@@ -78,14 +83,28 @@ We&rsquo;ll start with creating a new site with a very basic template.'>
 </section>
 <section class="section">
   <div class="container">
-    <div class="subtitle tags is-6 is-pulled-right">
+    <h1 class="title">A Testing Article</h1>
+    
+    <h2 class="subtitle tags is-6 is-pulled-right">
       
-    </div>
-    <h2 class="subtitle is-6">September 28, 2014</h2>
-    <h1 class="title">Creating a New Theme</h1>
+      
+<a class="subtitle is-6" href="/tags/python/">Python</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/neural-networks/">Neural Networks</a>
+  
+
+
+      
+    </h2>
+    <h2 class="subtitle is-6 date">September 28, 2012</h2>
+    
     
     <div class="content">
-      <h2 id="introduction">Introduction</h2>
+      <p>This is a test file for summary!</p>
+<h2 id="introduction">Introduction</h2>
 <p>This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&rsquo;t cover using CSS to style your theme.</p>
 <p>We&rsquo;ll start with creating a new site with a very basic template. Then we&rsquo;ll add in a few pages and posts. With small variations on that, you will be able to create many different types of web sites.</p>
 <p>In this tutorial, commands that you enter will start with the &ldquo;$&rdquo; prompt. The output will follow. Lines that start with &ldquo;#&rdquo; are comments that I&rsquo;ve added to explain a point. When I show updates to a file, the &ldquo;:wq&rdquo; on the last line means to save the file.</p>
@@ -891,9 +910,21 @@ $ vi themes/zafta/layouts/_default/single.html
 </code></pre><p>Note that we removed the date logic from the default template and put it in the post template. Generate the web site and verify the results. Posts have dates and the about page doesn&rsquo;t.</p>
 <h3 id="dont-repeat-yourself">Don&rsquo;t Repeat Yourself</h3>
 <p>DRY is a good design goal and Hugo does a great job supporting it. Part of the art of a good template is knowing when to add a new template and when to update an existing one. While you&rsquo;re figuring that out, accept that you&rsquo;ll be doing some refactoring. Hugo makes that easy and fast, so it&rsquo;s okay to delay splitting up a template.</p>
-
       
       <div class="related">
+
+<h3>Similar articles:</h3>
+<ul>
+	
+	<li><a href="/post/test1/">Testing A</a></li>
+	
+	<li><a href="/post/test2/">Testing B</a></li>
+	
+	<li><a href="/post/test3/">Testing C</a></li>
+	
+	<li><a href="/post/migrate-from-jekyll/">Migrate to Hugo from Jekyll</a></li>
+	
+</ul>
 </div>
       
     </div>
@@ -943,6 +974,19 @@ $ vi themes/zafta/layouts/_default/single.html
     
   </div>
 </section>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-125871484-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 
