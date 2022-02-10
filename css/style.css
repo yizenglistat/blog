@@ -1,3 +1,29 @@
+.pagination{
+  font-weight: bold;
+  font-size: 18px;
+  color:white;
+  margin-top: 7px;
+}
+
+.pagination a {
+  color:#3038d9;
+}
+
+.pagination-item{
+  opacity: 0.9;
+  background-color:#3038d9;
+  border-radius: 5px;
+  color: white
+}
+
+.pagination-item a {
+  color: white
+}
+
+.pagination-item a:hover {
+  color: white
+}
+
 .grad {
         height: 0.5px;
         background-color: #E6E6E6;
@@ -2623,10 +2649,13 @@ a.box:active {
 .subtitle.is-6 code {
   font-size: 14px;
   color:#23ad51;
+  transition: all 500ms;
 }
 
 .subtitle.is-6 a:hover{
   color:#3038d9;
+  font-size: 15px;
+  font-size-adjust: 20px;
 }
 
 
@@ -2725,6 +2754,15 @@ a.box:active {
 }
 
 .icon.is-small {
+  padding-top: 1.5px;
+  font-size: 14px;
+  height: 16px;
+  line-height: 16px;
+  width: 16px;
+}
+
+.icon.is-special {
+  padding-top: 1.5px;
   font-size: 14px;
   height: 16px;
   line-height: 16px;
@@ -4888,10 +4926,10 @@ a.box:active {
 }
 
 .level-item {
-  stroke: currentColor;
+  stroke: black;
   fill: none;
   position: relative;
-  top: 0.1111111111111111em;
+  top: 1.2em;
 }
 
 .nav-item {
@@ -4929,6 +4967,8 @@ a.box:active {
 .nav-item a,
 a.nav-item {
   color: #42464c;
+/*  transition: all 500ms;
+  font-size: 5px;*/
 }
 
 .nav-item a.is-active,
@@ -4938,6 +4978,8 @@ a.nav-item:hover {
   color: #3038d9;
   text-decoration: underline;
   text-underline-offset:5px;
+/*  font-size:20px;
+  font-size-adjust: 20px;*/
 }
 
 .nav-item a.is-tab,
@@ -5001,6 +5043,7 @@ a.nav-item.is-tab.is-active {
 @media screen and (min-width: 769px) and (max-width: 979px) {
   .nav-menu {
     padding-right: 20px;
+    padding-bottom:: 10px;
   }
 }
 
@@ -5120,6 +5163,7 @@ a.panel-block:hover {
 .pagination ul,
 .tabs a {
   -webkit-box-align: center;
+
 }
 
 .pagination a {
@@ -6659,7 +6703,9 @@ img[src$="#r"] {
 
 .related a:not(.button){
   color:#3038d9;
+  font-weight: bold;
 }
+
 
 .related ul {
   font-size: 17px;

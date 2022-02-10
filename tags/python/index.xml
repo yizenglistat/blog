@@ -6,13 +6,22 @@
     <description>Recent content in Python on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Sep 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testing A</title>
       <link>https://yizengli.com/post/test1/</link>
       <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
       
       <guid>https://yizengli.com/post/test1/</guid>
+      <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Testing Article</title>
+      <link>https://yizengli.com/post/creating-a-new-theme/</link>
+      <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://yizengli.com/post/creating-a-new-theme/</guid>
       <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
     </item>
     
@@ -32,26 +41,6 @@
       
       <guid>https://yizengli.com/post/test3/</guid>
       <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>A Testing Article</title>
-      <link>https://yizengli.com/post/creating-a-new-theme/</link>
-      <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/post/creating-a-new-theme/</guid>
-      <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Migrate to Hugo from Jekyll</title>
-      <link>https://yizengli.com/post/migrate-from-jekyll/</link>
-      <pubDate>Thu, 10 Mar 2011 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/post/migrate-from-jekyll/</guid>
-      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
-▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
     </item>
     
   </channel>

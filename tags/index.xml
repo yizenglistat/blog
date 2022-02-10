@@ -6,65 +6,11 @@
     <description>Recent content in Tags on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Development</title>
-      <link>https://yizengli.com/tags/development/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/tags/development/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://yizengli.com/tags/go/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>https://yizengli.com/tags/golang/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>https://yizengli.com/tags/hugo/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Templates</title>
-      <link>https://yizengli.com/tags/templates/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/tags/templates/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Themes</title>
-      <link>https://yizengli.com/tags/themes/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/tags/themes/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Tue, 28 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Neural Networks</title>
       <link>https://yizengli.com/tags/neural-networks/</link>
-      <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://yizengli.com/tags/neural-networks/</guid>
       <description></description>
@@ -73,7 +19,7 @@
     <item>
       <title>Python</title>
       <link>https://yizengli.com/tags/python/</link>
-      <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://yizengli.com/tags/python/</guid>
       <description></description>

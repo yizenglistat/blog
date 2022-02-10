@@ -6,13 +6,22 @@
     <description>Recent content in Neural Networks on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Sep 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/tags/neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/tags/neural-networks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testing A</title>
       <link>https://yizengli.com/post/test1/</link>
       <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
       
       <guid>https://yizengli.com/post/test1/</guid>
+      <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Testing Article</title>
+      <link>https://yizengli.com/post/creating-a-new-theme/</link>
+      <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://yizengli.com/post/creating-a-new-theme/</guid>
       <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
     </item>
     
@@ -31,15 +40,6 @@
       <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
       
       <guid>https://yizengli.com/post/test3/</guid>
-      <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>A Testing Article</title>
-      <link>https://yizengli.com/post/creating-a-new-theme/</link>
-      <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/post/creating-a-new-theme/</guid>
       <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
     </item>
     
