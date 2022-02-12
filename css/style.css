@@ -1,3 +1,10 @@
+
+.nav-search{
+  padding-top: 10px;
+  color:red;
+}
+
+
 .pagination{
   font-weight: bold;
   font-size: 18px;
@@ -3331,6 +3338,8 @@ a.box:active {
     -webkit-box-flex: 0;
     -ms-flex: none;
     flex: none;
+    #searchbox { display:block }
+    #searchResults { display:block; width:auto }
   }
 
   .column.is-full-mobile {
@@ -6494,8 +6503,14 @@ a.panel-block:hover {
 }
 
 .footer {
-  background-color: #f5f7fa;
-  padding: 40px 20px 80px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+  height: 150px;
+/*  background-color: #f5f7fa;
+  padding: 40px 20px 80px;*/
 }
 
 code,
@@ -6515,7 +6530,7 @@ html {
 
 .footer a:not(.icon),
 .footer a:visited:not(.icon) {
-  border-bottom: 1px solid #d3d6db;
+  border-bottom: 0px solid #d3d6db;
 }
 
 .footer a:not(.icon):hover,
