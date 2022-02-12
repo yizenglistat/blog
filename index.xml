@@ -9,42 +9,42 @@
     <lastBuildDate>Tue, 28 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testing A</title>
-      <link>https://yizengli.com/post/test1/</link>
+      <link>https://yizengli.com/posts/test1/</link>
       <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://yizengli.com/post/test1/</guid>
+      <guid>https://yizengli.com/posts/test1/</guid>
       <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>A Testing Article</title>
-      <link>https://yizengli.com/post/creating-a-new-theme/</link>
+      <link>https://yizengli.com/posts/creating-a-new-theme/</link>
       <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yizengli.com/post/creating-a-new-theme/</guid>
+      <guid>https://yizengli.com/posts/creating-a-new-theme/</guid>
       <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Testing B</title>
-      <link>https://yizengli.com/post/test2/</link>
+      <link>https://yizengli.com/posts/test2/</link>
       <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://yizengli.com/post/test2/</guid>
+      <guid>https://yizengli.com/posts/test2/</guid>
       <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Testing C</title>
-      <link>https://yizengli.com/post/test3/</link>
+      <link>https://yizengli.com/posts/test3/</link>
       <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://yizengli.com/post/test3/</guid>
+      <guid>https://yizengli.com/posts/test3/</guid>
       <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title></title>
+      <title>Search</title>
       <link>https://yizengli.com/search/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
