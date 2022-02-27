@@ -2,8 +2,8 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>Can Generator Work Without Discriminator in GAN? | yizengli.com</title>
-<meta property="og:title" content="Can Generator Work Without Discriminator in GAN? - yizengli.com">
+<title>GAN, Explained - Part 1 | yizengli.com</title>
+<meta property="og:title" content="GAN, Explained - Part 1 - yizengli.com">
 <meta property="og:description" content="In GAN, generator and discriminator work together in generation tasks. But do we really need the discriminator considering the existence of generation models like VAE.">
 <meta property="og:url" content="https://yizengli.com/posts/generative-models-review/">
 <meta property="og:site_name" content="yizengli.com">
@@ -73,7 +73,7 @@
 </section>
 <section class=section style=margin-top:-3em>
 <div class=container>
-<h1 class=title style=font-size:24px>Can Generator Work Without Discriminator in GAN?</h1>
+<h1 class=title style=font-size:24px>GAN, Explained - Part 1</h1>
 <h2 class="subtitle tags is-6">
 Edited on Feb 25, 2022
 •<svg xmlns="http://www.w3.org/2000/svg" class="svg-fill" style="margin-left:2px;margin-right:2px;margin-bottom:-3px" width="15" height="15" viewBox="0 0 24 24"><path d="M12 2c5.514.0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm0-2C5.373.0.0 5.373.0 12s5.373 12 12 12 12-5.373 12-12S18.627.0 12 0zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719.0-1.301-.582-1.301-1.301.0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z"/></svg> 0 min
@@ -112,12 +112,12 @@ Edited on Feb 25, 2022
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fyizengli.com%2fposts%2fgenerative-models-review%2f&title=Can%20Generator%20Work%20Without%20Discriminator%20in%20GAN%3f&summary=In%20GAN%2c%20generator%20and%20discriminator%20work%20together%20in%20generation%20tasks.%20But%20do%20we%20really%20need%20the%20discriminator%20considering%20the%20existence%20of%20generation%20models%20like%20VAE.&source=URL" target=_blank rel=noopener aria-label>
+<a class=resp-sharing-button__link href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fyizengli.com%2fposts%2fgenerative-models-review%2f&title=GAN%2c%20Explained%20-%20Part%201&summary=In%20GAN%2c%20generator%20and%20discriminator%20work%20together%20in%20generation%20tasks.%20But%20do%20we%20really%20need%20the%20discriminator%20considering%20the%20existence%20of%20generation%20models%20like%20VAE.&source=URL" target=_blank rel=noopener aria-label>
 <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.4 2.5-2.4c1.6.0 2.5 1 2.6 2.5.0 1.4-1 2.5-2.6 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="mailto:?subject=Can%20Generator%20Work%20Without%20Discriminator%20in%20GAN%3f&body=Can%20Generator%20Work%20Without%20Discriminator%20in%20GAN%3f%20by%20yizengli.com%0aIn%20GAN%2c%20generator%20and%20discriminator%20work%20together%20in%20generation%20tasks.%20But%20do%20we%20really%20need%20the%20discriminator%20considering%20the%20existence%20of%20generation%20models%20like%20VAE.%0a%0ahttps%3a%2f%2fyizengli.com%2fposts%2fgenerative-models-review%2f" target=_self rel=noopener aria-label>
+<a class=resp-sharing-button__link href="mailto:?subject=GAN%2c%20Explained%20-%20Part%201&body=GAN%2c%20Explained%20-%20Part%201%20by%20yizengli.com%0aIn%20GAN%2c%20generator%20and%20discriminator%20work%20together%20in%20generation%20tasks.%20But%20do%20we%20really%20need%20the%20discriminator%20considering%20the%20existence%20of%20generation%20models%20like%20VAE.%0a%0ahttps%3a%2f%2fyizengli.com%2fposts%2fgenerative-models-review%2f" target=_self rel=noopener aria-label>
 <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 4H2C.9 4 0 4.9.0 6v12c0 1.1.9 2 2 2h20c1.1.0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17.0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1.0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12 13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5 5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08.0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5 2c.24.13.32.44.18.68z"/></svg>
 </div>
 </div>
