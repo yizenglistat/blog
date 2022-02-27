@@ -1,27 +1,54 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Blog</title>
+    <title>Tags on yizengli.com</title>
     <link>https://yizengli.com/tags/</link>
-    <description>Recent content in Tags on Blog</description>
+    <description>Recent content in Tags on yizengli.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Neural Networks</title>
-      <link>https://yizengli.com/tags/neural-networks/</link>
-      <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
+      <title>generator</title>
+      <link>https://yizengli.com/tags/generator/</link>
+      <pubDate>Thu, 17 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://yizengli.com/tags/neural-networks/</guid>
+      <guid>https://yizengli.com/tags/generator/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Python</title>
-      <link>https://yizengli.com/tags/python/</link>
-      <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
+      <title>lstm</title>
+      <link>https://yizengli.com/tags/lstm/</link>
+      <pubDate>Thu, 17 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://yizengli.com/tags/python/</guid>
+      <guid>https://yizengli.com/tags/lstm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>review</title>
+      <link>https://yizengli.com/tags/review/</link>
+      <pubDate>Thu, 17 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yizengli.com/tags/review/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>statistics</title>
+      <link>https://yizengli.com/tags/statistics/</link>
+      <pubDate>Sun, 13 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yizengli.com/tags/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>word2vec</title>
+      <link>https://yizengli.com/tags/word2vec/</link>
+      <pubDate>Sun, 13 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yizengli.com/tags/word2vec/</guid>
       <description></description>
     </item>
     

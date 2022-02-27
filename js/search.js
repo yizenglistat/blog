@@ -1,3 +1,5 @@
+
+
 function executeSearch(searchQuery){
   $.getJSON( "/index.json", function( data ) {
     var pages = data;
@@ -7,7 +9,10 @@ function executeSearch(searchQuery){
     if(result.length > 0){
       populateResults(result);
     }else{
-      $('#searchResults').append("<p>Oops! not found.</p>");
+      // $('#mysearchResults').append("<p>Oops! not found.</p>");
+      document.getElementById("notfound").style.display = 'block';
+      document.getElementById("searchTags").style.visibility = 'visible';
+      document.getElementById("searchSeries").style.visibility = 'visible';
     }
   });
 }
@@ -40,10 +45,10 @@ function populateResults(result){
     var templateDefinition = $('#search-result-template').html();
     //replace values
     var output = render(templateDefinition,{key:key,title:value.item.title,link:value.item.permalink,tags:value.item.tags,categories:value.item.categories,snippet:snippet});
-    $('#searchResults').append(output);
+    $('#mysearchResults').append(output);
 
     $.each(snippetHighlights,function(snipkey,snipvalue){
-      $("#summary-"+key).mark(snipvalue);
+      $("#summary-"+key).mark(snipvalue, {"className":"mymark"});
     });
 
   });
@@ -83,8 +88,8 @@ summaryInclude=60;
 var fuseOptions = {
   shouldSort: true,
   includeMatches: true,
-  threshold: 0.0,
-  tokenize:true,
+  threshold: 0.1,
+  tokenize: true,
   location: 0,
   distance: 100,
   maxPatternLength: 32,
@@ -93,16 +98,19 @@ var fuseOptions = {
     {name:"title",weight:0.8},
     {name:"contents",weight:0.5},
     {name:"tags",weight:0.3},
-    {name:"categories",weight:0.3}
+    {name:"categories",weight:0.3},
+    {name:"summary",weight:0.5},
+    {name:"code",weight:0.3},
   ]
 };
 
 
 var searchQuery = param("s");
-
 if(searchQuery){
+
   $("#searchInput").val(searchQuery);
   executeSearch(searchQuery);
+
 }else {
-  $('#searchResults').append("<p>Please enter a word or phrase above</p>");
+  $('#mysearchResults').append("<p>Please enter a word or phrase above</p>");
 }

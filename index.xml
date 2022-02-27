@@ -1,55 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog</title>
+    <title>yizengli.com</title>
     <link>https://yizengli.com/</link>
-    <description>Recent content on Blog</description>
+    <description>Recent content on yizengli.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Testing A</title>
-      <link>https://yizengli.com/posts/test1/</link>
-      <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
+      <title>Can Generator Work Without Discriminator in GAN?</title>
+      <link>https://yizengli.com/posts/generative-models-review/</link>
+      <pubDate>Thu, 17 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://yizengli.com/posts/test1/</guid>
-      <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
+      <guid>https://yizengli.com/posts/generative-models-review/</guid>
+      <description>&lt;p&gt;In GAN, generator and discriminator work together in generation tasks. But do we really need the discriminator considering the existence of generation models like VAE.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>A Testing Article</title>
-      <link>https://yizengli.com/posts/creating-a-new-theme/</link>
-      <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
+      <title>Word2vec, Explained</title>
+      <link>https://yizengli.com/posts/word2vec-explained/</link>
+      <pubDate>Sun, 13 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://yizengli.com/posts/creating-a-new-theme/</guid>
-      <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Testing B</title>
-      <link>https://yizengli.com/posts/test2/</link>
-      <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/posts/test2/</guid>
-      <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Testing C</title>
-      <link>https://yizengli.com/posts/test3/</link>
-      <pubDate>Fri, 28 Sep 2012 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/posts/test3/</guid>
-      <description>&lt;p&gt;This is a test file for summary!&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Search</title>
-      <link>https://yizengli.com/search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://yizengli.com/search/</guid>
-      <description></description>
+      <guid>https://yizengli.com/posts/word2vec-explained/</guid>
+      <description>&lt;p&gt;A tutorial for Word2vec with statistical details explained.&lt;/p&gt;</description>
     </item>
     
   </channel>

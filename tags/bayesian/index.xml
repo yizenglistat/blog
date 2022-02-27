@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bayesian on yizengli.com</title>
+    <link>https://yizengli.com/tags/bayesian/</link>
+    <description>Recent content in bayesian on yizengli.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yizengli.com/tags/bayesian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bayesian Tree VCM Practice</title>
+      <link>https://yizengli.com/posts/bayes-tree-vcm/</link>
+      <pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yizengli.com/posts/bayes-tree-vcm/</guid>
+      <description>&lt;p&gt;A paper review on a Bayesian tree-based varying coefficient model.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
