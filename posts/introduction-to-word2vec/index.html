@@ -2,16 +2,16 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>GAN, Explained - Part 1 | yizengli.com</title>
-<meta property="og:title" content="GAN, Explained - Part 1 - yizengli.com">
-<meta property="og:description" content="In GAN, generator and discriminator work together in generation tasks. But do we really need the discriminator considering the existence of generation models like VAE.">
-<meta property="og:url" content="https://yizengli.com/posts/generative-models-review/">
+<title>Introduction to Word2vec | yizengli.com</title>
+<meta property="og:title" content="Introduction to Word2vec - yizengli.com">
+<meta property="og:description" content="A tutorial, focused on Skip-Gram, for Word2vec with statistical details.">
+<meta property="og:url" content="https://yizengli.com/posts/introduction-to-word2vec/">
 <meta property="og:site_name" content="yizengli.com">
-<meta property="og:type" content="article"><meta property="og:image" content="https://www.gravatar.com/avatar/70edb20b4e4d412b6528635c02d7a660?s=256"><meta property="article:section" content="Posts"><meta property="article:tag" content="generator"><meta property="article:tag" content="review"><meta property="article:tag" content="lstm"><meta property="article:published_time" content="2022-02-17T00:00:00Z"><meta property="article:modified_time" content="2022-02-25T00:00:00Z"><meta name=twitter:card content="summary"><meta name=twitter:site content="@yizenglistat"><meta name=twitter:creator content="@yizenglistat">
+<meta property="og:type" content="article"><meta property="og:image" content="/word2vec-fig1.png"><meta property="article:published_time" content="2022-02-13T00:00:00Z"><meta property="article:modified_time" content="2022-02-27T00:00:00Z"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@yizenglistat"><meta name=twitter:creator content="@yizenglistat">
 <link href=https://yizengli.com/index.xml rel=alternate type=application/rss+xml title=yizengli.com>
 <link rel=stylesheet href=https://yizengli.com/css/style.css><link rel=stylesheet href=https://yizengli.com/css/custom.css><script src=https://yizengli.com/js/top.js></script>
 <script src=https://www.google.com/recaptcha/api.js></script>
-<link rel=canonical href=https://yizengli.com/posts/generative-models-review/>
+<link rel=canonical href=https://yizengli.com/posts/introduction-to-word2vec/>
 <link rel=apple-touch-icon sizes=180x180 href=https://yizengli.com/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=https://yizengli.com/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=https://yizengli.com/favicon-16x16.png>
@@ -73,51 +73,358 @@
 </section>
 <section class=section style=margin-top:-3em>
 <div class=container>
-<h1 class=title style=font-size:24px>GAN, Explained - Part 1</h1>
+<h1 class=title style=font-size:24px>Introduction to Word2vec</h1>
 <h2 class="subtitle tags is-6">
-Edited on Feb 25, 2022
-•<svg xmlns="http://www.w3.org/2000/svg" class="svg-fill" style="margin-left:2px;margin-right:2px;margin-bottom:-3px" width="15" height="15" viewBox="0 0 24 24"><path d="M12 2c5.514.0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm0-2C5.373.0.0 5.373.0 12s5.373 12 12 12 12-5.373 12-12S18.627.0 12 0zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719.0-1.301-.582-1.301-1.301.0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z"/></svg> 0 min
+Edited on Feb 27, 2022
+•<svg xmlns="http://www.w3.org/2000/svg" class="svg-fill" style="margin-left:2px;margin-right:2px;margin-bottom:-3px" width="15" height="15" viewBox="0 0 24 24"><path d="M12 2c5.514.0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm0-2C5.373.0.0 5.373.0 12s5.373 12 12 12 12-5.373 12-12S18.627.0 12 0zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719.0-1.301-.582-1.301-1.301.0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z"/></svg> 5 min
 <span class="icon is-small is-marginless"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom:-4.5px" viewbox="0 0 24 24" class="svg-fill" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2H12l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7" y2="7"/></svg>
 </span>
-<a class="subtitle is-6" style=font-weight:500 href=https://yizengli.com/tags/generator/>generator</a>
-<a class="subtitle is-6" style=font-weight:500 href=https://yizengli.com/tags/review/>review</a>
-<a class="subtitle is-6" style=font-weight:500 href=https://yizengli.com/tags/lstm/>lstm</a>
+<a class="subtitle is-6" style=font-weight:500 href=https://yizengli.com/tags/word2vec/>word2vec</a>
+<a class="subtitle is-6" style=font-weight:500 href=https://yizengli.com/tags/statistics/>statistics</a>
+<a class="subtitle is-6" style=font-weight:500 href=https://yizengli.com/tags/theory/>theory</a>
 <div class=series>
 <span class="icon is-small is-marginless"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom:-4.5px" viewbox="0 0 24 24" class="svg-fill" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" aria-hidden="true"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5A2 2 0 014 3H9l2 3h9a2 2 0 012 2z"/></svg>
 </span>
-<a class="subtitle is-6" style=font-weight:500 href=https://yizengli.com/categories/ace-seq2seq/>ace seq2seq</a>
+<a class="subtitle is-6" style=font-weight:500 href=https://yizengli.com/categories/ace-word2vec/>ace word2vec</a>
 </div>
 </h2>
 <div class="content underlineLink">
-<div style=font-style:italic;opacity:.5;padding:2em;margin-top:-1.5em><p>In GAN, generator and discriminator work together in generation tasks. But do we really need the discriminator considering the existence of generation models like VAE.</p></div>
-<p>The <strong>G</strong>nerative <strong>A</strong>dversarial <strong>N</strong>etwork (GAN) is used to generate &ldquo;realistic&rdquo; new data given a training set.</p>
-<p>Let&rsquo;s start with an example. Suppose we have a vector $z$ sampled from a normal distribution as below.</p>
-<p>$$z=\begin{bmatrix}
--0.3\\
-0.4\\
--0.5
-\end{bmatrix}$$</p>
-<p>Our target for this example is to generate a long vector so that it could be reshaped into a digital image.</p>
+<div style=font-style:italic;opacity:.5;padding:2em;margin-top:-1.5em><p>A tutorial, focused on Skip-Gram, for Word2vec with statistical details.</p></div>
+<p>The word2vec uses the context of a word to build up its numerical representation. One of word2vec models, called <strong>Skip-Gram</strong>, is to learn the representation of a word against words appearing in the context. Let&rsquo;s start with a toy example to illustrate this with a little bit theory behind it.</p>
+<p><strong>Example.</strong> Suppose we have a <a href=https://www.merriam-webster.com/dictionary/corpus>corpus</a> of text containing two sentences:</p>
+<ul>
+<li>I want to buy an Apple iPhone.</li>
+<li>I want to eat an Apple now.</li>
+</ul>
+<p>We will first create a vocabulary, denoted as $V$, with unique words in the corpus below, where each word, for simplicity, is represented with 2 dimensional vector; $$[\theta_{\text{word},1},\theta_{\text{word},2}]\in\mathbb{R}^2.$$</p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Vector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>$[\theta_{\text{I},1},\theta_{\text{I},2}]$</td>
+</tr>
+<tr>
+<td>want</td>
+<td>$[\theta_{\text{want},1},\theta_{\text{want},2}]$</td>
+</tr>
+<tr>
+<td>to</td>
+<td>$[\theta_{\text{to},1},\theta_{\text{to},2}]$</td>
+</tr>
+<tr>
+<td>buy</td>
+<td>$[\theta_{\text{buy},1},\theta_{\text{buy},2}]$</td>
+</tr>
+<tr>
+<td>eat</td>
+<td>$[\theta_{\text{eat},1},\theta_{\text{eat},2}]$</td>
+</tr>
+<tr>
+<td>an</td>
+<td>$[\theta_{\text{an},1},\theta_{\text{an},2}]$</td>
+</tr>
+<tr>
+<td>Apple</td>
+<td>$[\theta_{\text{Apple},1},\theta_{\text{Apple},2}]$</td>
+</tr>
+<tr>
+<td>iPhone</td>
+<td>$[\theta_{\text{iPhone},1},\theta_{\text{iPhone},2}]$</td>
+</tr>
+<tr>
+<td>now</td>
+<td>$[\theta_{\text{now},1},\theta_{\text{now},2}]$</td>
+</tr>
+</tbody>
+</table>
+<p>Herein, let $V$ be a vocabulary set and $\boldsymbol{\theta}$ represent all the model parameters,
+\begin{align*}
+V&=
+\begin{pmatrix}
+\text{I}\\
+\text{want}\\
+\text{to}\\
+\text{buy}\\
+\text{eat}\\
+\text{an}\\
+\text{Apple}\\
+\text{iPhone}\\
+\text{now}\\
+\end{pmatrix}&
+\boldsymbol{\theta}&=
+\begin{bmatrix}
+\theta_{\text{I},1}\\
+\theta_{\text{I},2}\\
+\theta_{\text{want},1}\\
+\theta_{\text{want},2}\\
+\vdots\\
+\theta_{\text{iPhone},1} \\
+\theta_{\text{iPhone},2} \\
+\theta_{\text{now},1}\\
+\theta_{\text{now},2}\\
+\end{bmatrix}.
+\end{align*}
+The next step is to determine how much contextual information you want, which is controlled by the window size $m$. In this example, let $m=1$ for simplicity. Now at every position of word in the corpus, $t=1,2,\ldots,T$ with here $T=14$, we will focus on the window with <strong>at most</strong> $2m+1$ words since at the start/end of sentence, the window will be <strong>trimmed</strong> in word2vec.</p>
+<p><img src=./word2vec-fig2.png alt=word2vec-fig1></p>
+<p>In the figure shown above, The highlighted band is referred to $\textcolor{BurntOrange}{\text{window}}$, in which the red word is called $\textcolor{red}{\text{center}}$ word and blue word is called $\textcolor{Cerulean}{\text{context}}$.</p>
+<p>Suppose we now have the probability of $w_{t-1}$ given $w_t$ and the probability of $w_{t+1}$ given $w_t$;
+$$\text{Pr}(w_{t-1}\mid w_t)\text{ and }\text{Pr}(w_{t+1}\mid w_t),$$
+A natural way in statistics is to maximize the likelihood function
+\begin{align*}
+L(\boldsymbol{\theta})
+&=\prod\limits_{t=1}^TL_t(\boldsymbol\theta)\\
+&=\prod\limits_{t=1}^{T}\prod\limits_{-m\le j\le m}^{j\neq0} \text{Pr}(w_{t+j}\mid w_t)\\
+&=\text{Pr}(w_{2}\mid w_1) \\
+&=\text{Pr}(w_{1}\mid w_2)\text{Pr}(w_{3}\mid w_2)\\
+&=\cdots\\
+&=\text{Pr}(w_{5}\mid w_6)\text{Pr}(w_{7}\mid w_6)\\
+&=\text{Pr}(w_{6}\mid w_7)\\
+&=\text{Pr}(w_{9}\mid w_8)\\
+&=\text{Pr}(w_{8}\mid w_9)\text{Pr}(w_{10}\mid w_9)\\
+&=\cdots\\
+&=\text{Pr}(w_{12}\mid w_{13})\text{Pr}(w_{14}\mid w_{13})\\
+&=\text{Pr}(w_{13}\mid w_{14})
+\end{align*}
+People in machine learning/deep learning like to minimize a function for no particular reason so we equivalently minimize the negative log-likelihood (divided by a constant is a convention to make it not too large, think about billions of words) and name it loss function $J(\boldsymbol{\theta})$ below
+\begin{align*}
+J(\boldsymbol{\theta})
+&=-\frac{1}{T}\sum_{t=1}^TJ_t(\boldsymbol\theta)\\
+&=-\frac{1}{T}\sum\limits_{t=1}^T\sum\limits_{-m\le j\le m}^{j\neq0}\log \text{Pr}(w_{t+j}\mid w_j).
+\end{align*}
+If we have the expression of $\text{Pr}(\cdot\mid\cdot)$ then we simply use (stochastic) gradient descent to minimize $J(\boldsymbol{\theta})$ to find the optimal $\boldsymbol{\theta}$. So, back in word2vec, we want to find a vector for each word so that it is <strong>similar</strong> to vectors of words that appear in similar contexts. As for the similarity of two words, we can use <a href=https://en.wikipedia.org/wiki/Cosine_similarity>cosine similarity</a> (dot product). Hence, we could somehow convert the dot product to probability we assumed above. Considering the output of dot product could be negative, a natural choice is to use $\exp(\cdot)$ to make it positive and then normalize it to be a probability (that is, ranging from 0 to 1). In this way, $\text{Pr}(\textcolor{Cerulean}{\text{context}}\mid \textcolor{red}{\text{center}})$ is expressed as
+$$
+\frac{\exp(\textcolor{Cerulean}{\text{context}}^\top\textcolor{red}{\text{center}})}{Z},
+$$
+where $Z$ is just a normalization factor as follows
+$$
+Z=\sum\limits_{\text{word}\in\text{V}}\exp(\text{word}^\top\textcolor{red}{\text{center}}).
+$$
+If we take the $\log(\cdot)$ with respect to $\text{Pr}(\textcolor{Cerulean}{\text{context}}\mid \textcolor{red}{\text{center}})$ because we have $\log(\cdot)$ in our loss function $J(\boldsymbol{\theta})$ too, then $\log\text{Pr}(\textcolor{Cerulean}{\text{context}}\mid \textcolor{red}{\text{center}})$ is expressed as
+\begin{align*}
+\textcolor{Cerulean}{\text{context}}^\top\textcolor{red}{\text{center}}
+-\log(Z).
+\end{align*}
+Notice herein $\textcolor{red}{\text{center}}^\top\textcolor{red}{\text{center}}$ will happen in $Z$ since $\textcolor{red}{\text{center}}\in V$ too. This will make the gradient messy since it has literally square itself. In word2vec, it suggests to use two representations for each word (one for $\textcolor{Cerulean}{\text{context}}$, one for $\textcolor{red}{\text{center}}$, and average them as the final representation vector at the end) as follows</p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Context Vector</th>
+<th>Center Vector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>$[u_{\textcolor{Cerulean}{\text{I}},1},u_{\textcolor{Cerulean}{\text{I}},2}]$</td>
+<td>$[v_{\textcolor{red}{\text{I}},1},v_{\textcolor{red}{\text{I}},2}]$</td>
+</tr>
+<tr>
+<td>want</td>
+<td>$[u_{\textcolor{Cerulean}{\text{want}},1},u_{\textcolor{Cerulean}{\text{want}},2}]$</td>
+<td>$[v_{\textcolor{red}{\text{want}},1},v_{\textcolor{red}{\text{want}},2}]$</td>
+</tr>
+<tr>
+<td>to</td>
+<td>$[u_{\textcolor{Cerulean}{\text{to}},1},u_{\textcolor{Cerulean}{\text{to}},2}]$</td>
+<td>$[v_{\textcolor{red}{\text{to}},1},v_{\textcolor{red}{\text{to}},2}]$</td>
+</tr>
+<tr>
+<td>buy</td>
+<td>$[u_{\textcolor{Cerulean}{\text{buy}},1},u_{\textcolor{Cerulean}{\text{buy}},2}]$</td>
+<td>$[v_{\textcolor{red}{\text{buy}},1},v_{\textcolor{red}{\text{buy}},2}]$</td>
+</tr>
+<tr>
+<td>eat</td>
+<td>$[u_{\textcolor{Cerulean}{\text{eat}},1},u_{\textcolor{Cerulean}{\text{eat}},2}]$</td>
+<td>$[v_{\textcolor{red}{\text{eat}},1},v_{\textcolor{red}{\text{eat}},2}]$</td>
+</tr>
+<tr>
+<td>an</td>
+<td>$[u_{\textcolor{Cerulean}{\text{an}},1},u_{\textcolor{Cerulean}{\text{an}},2}]$</td>
+<td>$[v_{\textcolor{red}{\text{an}},1},v_{\textcolor{red}{\text{an}},2}]$</td>
+</tr>
+<tr>
+<td>Apple</td>
+<td>$[u_{\textcolor{Cerulean}{\text{Apple}},1},u_{\textcolor{Cerulean}{\text{Apple}},2}]$</td>
+<td>$[v_{\textcolor{red}{\text{Apple}},1},v_{\textcolor{red}{\text{Apple}},2}]$</td>
+</tr>
+<tr>
+<td>iPhone</td>
+<td>$[u_{\textcolor{Cerulean}{\text{iPhone}},1},u_{\textcolor{Cerulean}{\text{iPhone}},2}]$</td>
+<td>$[v_{\textcolor{red}{\text{iPhone}},1},v_{\textcolor{red}{\text{iPhone}},2}]$</td>
+</tr>
+<tr>
+<td>now</td>
+<td>$[u_{\textcolor{Cerulean}{\text{now}},1},u_{\textcolor{Cerulean}{\text{now}},2}]$</td>
+<td>$[v_{\textcolor{red}{\text{now}},1},v_{\textcolor{red}{\text{now}},2}]$</td>
+</tr>
+</tbody>
+</table>
+<p>Thus the model parameters will be updated to
+\begin{align*}
+\boldsymbol{\theta}&=
+\begin{bmatrix}
+v_{\textcolor{red}{\text{I}},1}\\
+v_{\textcolor{red}{\text{I}},2}\\
+\vdots\\
+v_{\textcolor{red}{\text{now}},1} \\
+v_{\textcolor{red}{\text{now}},2} \\
+u_{\textcolor{Cerulean}{\text{I}},1}\\
+u_{\textcolor{Cerulean}{\text{I}},2}\\
+\vdots\\
+u_{\textcolor{Cerulean}{\text{now}},1} \\
+u_{\textcolor{Cerulean}{\text{now}},2}
+\end{bmatrix}.
+\end{align*}
+Now we could avoid the square issue mentioned above which is beneficial from the computing perspective (but the original one still can work if you just try to optimize loss function no matter how). Anyhow, we have our probability function $\text{Pr}(\textcolor{Cerulean}{\text{context}}\mid \textcolor{red}{\text{center}})$ expressed as
+$$
+\frac{\exp(u_{\textcolor{Cerulean}{\text{context}}}^\top v_{\textcolor{red}{\text{center}}}) }{\sum\limits_{\text{word}\in\text{V}}\exp(u_{\text{word}}^\top v_{\textcolor{red}{\text{center}} })},
+$$
+and consequently we could calculate our loss function $J(\boldsymbol{\theta})$ given $\boldsymbol{\theta}$. If so, we could just initilize $\boldsymbol{\theta}$ by some random initialization and use stochastic gradient descent algorithm to update $\boldsymbol{\theta}$ one window at a time.</p>
+<blockquote>
+<p><strong>Remark.</strong> In vanilla gradient descent, updating $\boldsymbol\theta$ until we&rsquo;ve seen all words will take a super long time (imagine you have billions of words) so in practice we would like to update $\boldsymbol\theta$ for a batch of windows. It is called stochastic or mini-batch gradient gescent.</p>
+</blockquote>
+<p>Let&rsquo;s get to the derivative part to find the optimal $\boldsymbol\theta$.</p>
+<p><strong>At position/timestep $t=1$</strong>, our one-window loss function will be
+\begin{align*}
+J(\boldsymbol\theta)
+&=-J_1(\boldsymbol\theta)\\
+&= -\log\text{Pr}(w_2|w_1)\\
+&= -\log\text{Pr}(\textcolor{Cerulean}{\text{want}}\mid\textcolor{red}{\text{I}})\\
+&= -u_{\textcolor{Cerulean}{\text{want}}}^\top v_{\textcolor{red}{\text{I}}} + \log \sum\limits_{\text{word}\in\text{V}}\exp(u_{\text{word}}^\top v_{\textcolor{red}{\text{I}}}).
+\end{align*}
+Taking first derivative with respect to $v_{\textcolor{red}{\text{I}}}$ yields
+\begin{align*}
+\frac{\partial}{\partial v_{\textcolor{red}{\text{I}}}}J(\boldsymbol\theta)
+&=-u_{\textcolor{Cerulean}{\text{want}}}+\frac{\sum\limits_{\text{x}\in\text{V}}\frac{\partial}{\partial v_{\textcolor{red}{\text{I}}}}\exp(u_{\text{x}}^\top v_{\textcolor{red}{\text{I}}})}{\sum\limits_{\text{word}\in\text{V}}\exp(u_{\text{word}}^\top v_{\textcolor{red}{\text{I}}})}\\
+&=-u_{\textcolor{Cerulean}{\text{want}}}+\frac{\sum\limits_{\text{x}\in\text{V}}u_{\text{x}}\exp(u_{\text{x}}^\top v_{\textcolor{red}{\text{I}}})}{\sum\limits_{\text{word}\in\text{V}}\exp(u_{\text{word}}^\top v_{\textcolor{red}{\text{I}}})}\\
+&=-u_{\textcolor{Cerulean}{\text{want}}}+\sum\limits_{\text{x}\in\text{V}}u_{\text{x}}\text{Pr}(x\mid\textcolor{red}{\text{I}})\\
+&=-(\text{observed}-\text{expectation}).
+\end{align*}
+Interestingly, the derivative of center word is just the difference between observed context and (conditional) expectation of context.</p>
+<p>Taking first derivative with respect to $u_{\textcolor{Cerulean}{\text{want}}}$ yields
+\begin{align*}
+\frac{\partial}{\partial u_{\textcolor{Cerulean}{\text{want}}}}J(\boldsymbol\theta)
+&=-v_{\textcolor{red}{\text{I}}} + \frac{\sum\limits_{\text{x}\in\text{V}}\frac{\partial}{\partial u_{\textcolor{Cerulean}{\text{want}}}}\exp(u_{\text{x}}^\top v_{\textcolor{red}{\text{I}}})}{\sum\limits_{\text{word}\in\text{V}}\exp(u_{\text{word}}^\top v_{\textcolor{red}{\text{I}}})}\\
+&=-v_{\textcolor{red}{\text{I}}} + \frac{v_{\textcolor{red}{\text{I}}}\exp(u_{\textcolor{Cerulean}{\text{want}}}^\top v_{\textcolor{red}{\text{I}}})}{\sum\limits_{\text{word}\in\text{V}}\exp(u_{\text{word}}^\top v_{\textcolor{red}{\text{I}}})}\\
+&=-v_{\textcolor{red}{\text{I}}} + v_{\textcolor{red}{\text{I}}}\text{Pr}(\textcolor{Cerulean}{\text{want}}\mid\textcolor{red}{\text{I}})\\
+&=-v_{\textcolor{red}{\text{I}}}[1-\text{Pr}(\textcolor{Cerulean}{\text{want}}\mid\textcolor{red}{\text{I}})].
+\end{align*}</p>
+<p>So we will update corresponding parameters in the current window,
+\begin{align*}
+\begin{bmatrix}
+v_{\textcolor{red}{\text{I}},1}\\
+v_{\textcolor{red}{\text{I}},2}\\
+u_{\textcolor{Cerulean}{\text{want}},1}\\
+u_{\textcolor{Cerulean}{\text{want}},2}
+\end{bmatrix}
+&=
+\begin{bmatrix}
+v_{\textcolor{red}{\text{I}},1}\\
+v_{\textcolor{red}{\text{I}},2}\\
+u_{\textcolor{Cerulean}{\text{want}},1}\\
+u_{\textcolor{Cerulean}{\text{want}},2}
+\end{bmatrix}-\alpha
+\begin{bmatrix}
+\frac{\partial}{\partial v_{\textcolor{red}{\text{I}}}}J(\boldsymbol\theta)\\
+\frac{\partial}{\partial v_{\textcolor{red}{\text{I}}}}J(\boldsymbol\theta)\\
+\frac{\partial}{\partial u_{\textcolor{Cerulean}{\text{want}}}}J(\boldsymbol\theta)\\
+\frac{\partial}{\partial u_{\textcolor{Cerulean}{\text{want}}}}J(\boldsymbol\theta)
+\end{bmatrix}
+\end{align*}
+<strong>At position/timestep $t=2$</strong>, our one-window loss function will be
+\begin{align*}
+J(\boldsymbol\theta)
+=&-J_2(\boldsymbol\theta)\\
+=& -\log\text{Pr}(w_1|w_2)-\log\text{Pr}(w_3|w_2)\\
+=& -\log\text{Pr}(\textcolor{Cerulean}{\text{I}}\mid\textcolor{red}{\text{want}})-\log\text{Pr}(\textcolor{Cerulean}{\text{to}}\mid\textcolor{red}{\text{want}})\\
+=&-u_{\textcolor{Cerulean}{\text{I}}}^\top v_{\textcolor{red}{\text{want}}} + \log \sum\limits_{\text{word}\in\text{V}}\exp(u_{\text{word}}^\top v_{\textcolor{red}{\text{want}}})\\
+&-u_{\textcolor{Cerulean}{\text{to}}}^\top v_{\textcolor{red}{\text{want}}} + \log \sum\limits_{\text{word}\in\text{V}}\exp(u_{\text{word}}^\top v_{\textcolor{red}{\text{want}}})\\
+=&-u_{\textcolor{Cerulean}{\text{I}}}^\top v_{\textcolor{red}{\text{want}}} -u_{\textcolor{Cerulean}{\text{to}}}^\top v_{\textcolor{red}{\text{want}}}\\
+&+ 2\log \sum\limits_{\text{word}\in\text{V}}\exp(u_{\text{word}}^\top v_{\textcolor{red}{\text{want}}})
+\end{align*}
+Taking first derivative with respect to $v_{\textcolor{red}{\text{want}}}$ yields
+\begin{align*}
+\frac{\partial}{\partial v_{\textcolor{red}{\text{want}}}}J(\boldsymbol\theta)
+=&-u_{\textcolor{Cerulean}{\text{I}}}-u_{\textcolor{Cerulean}{\text{to}}}\\
+&+2\sum\limits_{\text{x}\in\text{V}}u_{\text{x}}\text{Pr}(x\mid\textcolor{red}{\text{want}})
+\end{align*}
+Taking first derivative with respect to $u_{\textcolor{Cerulean}{\text{I}}}$ yields
+\begin{align*}
+\frac{\partial}{\partial u_{\textcolor{Cerulean}{\text{I}}}}J(\boldsymbol\theta)
+=&-v_{\textcolor{red}{\text{want}}}[1-2\text{Pr}(\textcolor{Cerulean}{\text{I}}\mid\textcolor{red}{\text{want}})].
+\end{align*}
+Taking first derivative with respect to $u_{\textcolor{Cerulean}{\text{to}}}$ yields
+\begin{align*}
+\frac{\partial}{\partial u_{\textcolor{Cerulean}{\text{to}}}}J(\boldsymbol\theta)
+=&-v_{\textcolor{red}{\text{want}}}[1-2\text{Pr}(\textcolor{Cerulean}{\text{to}}\mid\textcolor{red}{\text{want}})].
+\end{align*}
+So we will update corresponding parameters in the current window,
+\begin{align*}
+\begin{bmatrix}
+v_{\textcolor{red}{\text{want}},1}\\
+v_{\textcolor{red}{\text{want}},2}\\
+u_{\textcolor{Cerulean}{\text{I}},1}\\
+u_{\textcolor{Cerulean}{\text{I}},2}\\
+u_{\textcolor{Cerulean}{\text{to}},1}\\
+u_{\textcolor{Cerulean}{\text{to}},2}
+\end{bmatrix}
+&=
+\begin{bmatrix}
+v_{\textcolor{red}{\text{want}},1}\\
+v_{\textcolor{red}{\text{want}},2}\\
+u_{\textcolor{Cerulean}{\text{I}},1}\\
+u_{\textcolor{Cerulean}{\text{I}},2}\\
+u_{\textcolor{Cerulean}{\text{to}},1}\\
+u_{\textcolor{Cerulean}{\text{to}},2}
+\end{bmatrix}-\alpha
+\begin{bmatrix}
+\frac{\partial}{\partial v_{\textcolor{red}{\text{want}}}}J(\boldsymbol\theta)\\
+\frac{\partial}{\partial v_{\textcolor{red}{\text{want}}}}J(\boldsymbol\theta)\\
+\frac{\partial}{\partial u_{\textcolor{Cerulean}{\text{I}}}}J(\boldsymbol\theta)\\
+\frac{\partial}{\partial u_{\textcolor{Cerulean}{\text{I}}}}J(\boldsymbol\theta)\\
+\frac{\partial}{\partial u_{\textcolor{Cerulean}{\text{to}}}}J(\boldsymbol\theta)\\
+\frac{\partial}{\partial u_{\textcolor{Cerulean}{\text{to}}}}J(\boldsymbol\theta)
+\end{bmatrix}
+\end{align*}
+Similarly, we could follow these procedures until the end of corpus which completes one pass (also called one epoch). After many passes or epoches, it may converge to some extend and the average of $v_{\textcolor{red}{\text{center}}}$ and $u_{\textcolor{Cerulean}{\text{context}}}$ would be the learned representation for each word. For example, the representation for word want would be</p>
+<p>$$\left[\frac{u_{\textcolor{Cerulean}{\text{want}},1} +v_{\textcolor{red}{\text{want}},1}}{2},\frac{u_{\textcolor{Cerulean}{\text{want}},2} +v_{\textcolor{red}{\text{want}},2}}{2}\right].$$</p>
+<blockquote>
+<p><strong>Remark.</strong> One take-away is that notice the word Apple has been updated across different contexts (see $t=6$ and $t=13$ in the figure above.), which could be interpreted as the meaning of Apple spread out all over words in the corpus.</p>
+</blockquote>
+<p><strong>What&rsquo;s Next?</strong></p>
+<ul>
+<li>We could actually use matrix notations to represent everything we did above, which is faster in computation/coding.</li>
+<li>The calculation of normalization factor $Z$ is a burden when billions of words punch you, so an alternative way, called negative sampling, could be used to avoid it.</li>
+<li>Implementation in Pytorch with another toy example should be fun!</li>
+</ul>
 <style type=text/css>.resp-sharing-button__link,.resp-sharing-button__icon{display:inline-block}.resp-sharing-button__link{text-decoration:none;color:#fff;margin-right:.5em;margin-bottom:1em;margin-top:0}.resp-sharing-button{border-radius:5px;transition:25ms ease-out;padding:.5em .75em;font-family:Helvetica Neue,Helvetica,Arial,sans-serif}.resp-sharing-button__icon svg{width:1em;height:1em;margin-right:.4em;vertical-align:top}.resp-sharing-button--small svg{margin:0;vertical-align:middle}.resp-sharing-button__icon{stroke:#fff;fill:none}.resp-sharing-button__icon--solid,.resp-sharing-button__icon--solidcircle{fill:#fff;stroke:none}.resp-sharing-button--twitter{background-color:#55acee}.resp-sharing-button--twitter:hover{background-color:#2795e9}.resp-sharing-button--pinterest{background-color:#bd081c}.resp-sharing-button--pinterest:hover{background-color:#8c0615}.resp-sharing-button--facebook{background-color:#3b5998}.resp-sharing-button--facebook:hover{background-color:#2d4373}.resp-sharing-button--tumblr{background-color:#35465c}.resp-sharing-button--tumblr:hover{background-color:#222d3c}.resp-sharing-button--reddit{background-color:#5f99cf}.resp-sharing-button--reddit:hover{background-color:#3a80c1}.resp-sharing-button--google{background-color:#dd4b39}.resp-sharing-button--google:hover{background-color:#c23321}.resp-sharing-button--linkedin{background-color:#0077b5}.resp-sharing-button--linkedin:hover{background-color:#046293}.resp-sharing-button--email{background-color:#777}.resp-sharing-button--email:hover{background-color:#5e5e5e}.resp-sharing-button--xing{background-color:#1a7576}.resp-sharing-button--xing:hover{background-color:#114c4c}.resp-sharing-button--whatsapp{background-color:#25d366}.resp-sharing-button--whatsapp:hover{background-color:#1da851}.resp-sharing-button--hackernews{background-color:#f60}.resp-sharing-button--hackernews:hover,.resp-sharing-button--hackernews:focus{background-color:#fb6200}.resp-sharing-button--vk{background-color:#507299}.resp-sharing-button--vk:hover{background-color:#43648c}.resp-sharing-button--facebook{background-color:#3b5998;border-color:#3b5998}.resp-sharing-button--facebook:hover,.resp-sharing-button--facebook:active{background-color:#2d4373;border-color:#2d4373}.resp-sharing-button--twitter{background-color:#55acee;border-color:#55acee}.resp-sharing-button--twitter:hover,.resp-sharing-button--twitter:active{background-color:#2795e9;border-color:#2795e9}.resp-sharing-button--tumblr{background-color:#35465c;border-color:#35465c}.resp-sharing-button--tumblr:hover,.resp-sharing-button--tumblr:active{background-color:#222d3c;border-color:#222d3c}.resp-sharing-button--email{background-color:#777;border-color:#777}.resp-sharing-button--email:hover,.resp-sharing-button--email:active{background-color:#5e5e5e;border-color:#5e5e5e}.resp-sharing-button--pinterest{background-color:#bd081c;border-color:#bd081c}.resp-sharing-button--pinterest:hover,.resp-sharing-button--pinterest:active{background-color:#8c0615;border-color:#8c0615}.resp-sharing-button--linkedin{background-color:#0077b5;border-color:#0077b5}.resp-sharing-button--linkedin:hover,.resp-sharing-button--linkedin:active{background-color:#046293;border-color:#046293}.resp-sharing-button--reddit{background-color:#5f99cf;border-color:#5f99cf}.resp-sharing-button--reddit:hover,.resp-sharing-button--reddit:active{background-color:#3a80c1;border-color:#3a80c1}.resp-sharing-button--xing{background-color:#1a7576;border-color:#1a7576}.resp-sharing-button--xing:hover .resp-sharing-button--xing:active{background-color:#114c4c;border-color:#114c4c}.resp-sharing-button--whatsapp{background-color:#25d366;border-color:#25d366}.resp-sharing-button--whatsapp:hover,.resp-sharing-button--whatsapp:active{background-color:#1da851;border-color:#1da851}.resp-sharing-button--hackernews{background-color:#f60;border-color:#f60}.resp-sharing-button--hackernews:hover .resp-sharing-button--hackernews:active{background-color:#fb6200;border-color:#fb6200}.resp-sharing-button--vk{background-color:#507299;border-color:#507299}.resp-sharing-button--vk:hover .resp-sharing-button--vk:active{background-color:#43648c;border-color:#43648c}.resp-sharing-button--telegram{background-color:#54a9eb}.resp-sharing-button--telegram:hover{background-color:#4b97d1}</style>
 <div class=container style=display:flex;justify-content:left;margin-bottom:0>
-<a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fyizengli.com%2fposts%2fgenerative-models-review%2f" class=facebook aria-label="share on Facebook">
+<a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fyizengli.com%2fposts%2fintroduction-to-word2vec%2f" class=facebook aria-label="share on Facebook">
 </a>
-<a class=resp-sharing-button__link href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fyizengli.com%2fposts%2fgenerative-models-review%2f" target=_blank rel=noopener aria-label>
+<a class=resp-sharing-button__link href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fyizengli.com%2fposts%2fintroduction-to-word2vec%2f" target=_blank rel=noopener aria-label>
 <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://twitter.com/intent/tweet/?text=In%20GAN%2c%20generator%20and%20discriminator%20work%20together%20in%20generation%20tasks.%20But%20do%20we%20really%20need%20the%20discriminator%20considering%20the%20existence%20of%20generation%20models%20like%20VAE.&url=https%3a%2f%2fyizengli.com%2fposts%2fgenerative-models-review%2f" target=_blank rel=noopener aria-label>
+<a class=resp-sharing-button__link href="https://twitter.com/intent/tweet/?text=A%20tutorial%2c%20focused%20on%20Skip-Gram%2c%20for%20Word2vec%20with%20statistical%20details.&url=https%3a%2f%2fyizengli.com%2fposts%2fintroduction-to-word2vec%2f" target=_blank rel=noopener aria-label>
 <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5.0-4.55 2.04-4.55 4.54.0.36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3.0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35.0 12.92-6.92 12.92-12.93.0-.2.0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fyizengli.com%2fposts%2fgenerative-models-review%2f&title=GAN%2c%20Explained%20-%20Part%201&summary=In%20GAN%2c%20generator%20and%20discriminator%20work%20together%20in%20generation%20tasks.%20But%20do%20we%20really%20need%20the%20discriminator%20considering%20the%20existence%20of%20generation%20models%20like%20VAE.&source=URL" target=_blank rel=noopener aria-label>
+<a class=resp-sharing-button__link href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fyizengli.com%2fposts%2fintroduction-to-word2vec%2f&title=Introduction%20to%20Word2vec&summary=A%20tutorial%2c%20focused%20on%20Skip-Gram%2c%20for%20Word2vec%20with%20statistical%20details.&source=URL" target=_blank rel=noopener aria-label>
 <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.4 2.5-2.4c1.6.0 2.5 1 2.6 2.5.0 1.4-1 2.5-2.6 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z"/></svg>
 </div>
 </div>
 </a>
-<a class=resp-sharing-button__link href="mailto:?subject=GAN%2c%20Explained%20-%20Part%201&body=GAN%2c%20Explained%20-%20Part%201%20by%20yizengli.com%0aIn%20GAN%2c%20generator%20and%20discriminator%20work%20together%20in%20generation%20tasks.%20But%20do%20we%20really%20need%20the%20discriminator%20considering%20the%20existence%20of%20generation%20models%20like%20VAE.%0a%0ahttps%3a%2f%2fyizengli.com%2fposts%2fgenerative-models-review%2f" target=_self rel=noopener aria-label>
+<a class=resp-sharing-button__link href="mailto:?subject=Introduction%20to%20Word2vec&body=Introduction%20to%20Word2vec%20by%20yizengli.com%0aA%20tutorial%2c%20focused%20on%20Skip-Gram%2c%20for%20Word2vec%20with%20statistical%20details.%0a%0ahttps%3a%2f%2fyizengli.com%2fposts%2fintroduction-to-word2vec%2f" target=_self rel=noopener aria-label>
 <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden=true class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 4H2C.9 4 0 4.9.0 6v12c0 1.1.9 2 2 2h20c1.1.0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17.0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1.0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12 13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5 5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08.0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5 2c.24.13.32.44.18.68z"/></svg>
 </div>
 </div>
@@ -131,11 +438,11 @@ Edited on Feb 25, 2022
 <section>
 <div style=display:flex;justify-content:space-between;max-width:100%;flex-wrap:wrap;align-content:center>
 <div class=level-item>
-<a class=button href=https://yizengli.com/posts/word2vec-explained/ style=font-size:15px;font-weight:700>
-◀ Word2vec, Explained
-</a>
 </div>
 <div class=level-item style=margin-left:auto;order:1>
+<a class=button href=https://yizengli.com/posts/introduction-to-gan/ style=font-size:15px;font-weight:700>
+Introduction to GAN ▶
+</a>
 </div>
 </div>
 </section>
