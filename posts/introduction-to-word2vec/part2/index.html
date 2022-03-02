@@ -179,7 +179,7 @@ u_{\textcolor{Cerulean}{\text{now}}}^\top v_{\textcolor{red}{\text{center}}}
 \frac{\exp(u_{\textcolor{Cerulean}{\text{Apple}}}^\top v_{\textcolor{red}{\text{center}}})}{Z}\\
 \frac{\exp(u_{\textcolor{Cerulean}{\text{iPhone}}}^\top v_{\textcolor{red}{\text{center}}})}{Z}\\
 \frac{\exp(u_{\textcolor{Cerulean}{\text{now}}}^\top v_{\textcolor{red}{\text{center}}})}{Z}
-\end{bmatrix}
+\end{bmatrix}\\
 =&\begin{bmatrix}
 \hat y_{\textcolor{Cerulean}{\text{I}}}\\
 \hat y_{\textcolor{Cerulean}{\text{want}}}\\
@@ -201,18 +201,16 @@ u_{\textcolor{Cerulean}{\text{now}}}^\top v_{\textcolor{red}{\text{center}}}
 </span></span><span style=display:flex><span><span style=color:#586e75># word2vec, Skip-Gram, model</span>
 </span></span><span style=display:flex><span><span style=color:#719e07>class</span> <span style=color:#268bd2>word2vec</span>:
 </span></span><span style=display:flex><span>    <span style=color:#719e07>def</span> __init__(<span style=color:#268bd2>self</span>):
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden_size 	<span style=color:#719e07>=</span> <span style=color:#2aa198>2</span>
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>window_size 	<span style=color:#719e07>=</span> <span style=color:#2aa198>1</span>
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V 				<span style=color:#719e07>=</span> <span style=color:#2aa198>9</span>
-</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>		<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden_size 	<span style=color:#719e07>=</span> <span style=color:#2aa198>2</span>
+</span></span><span style=display:flex><span>		<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>window_size 	<span style=color:#719e07>=</span> <span style=color:#2aa198>1</span>
+</span></span><span style=display:flex><span>		<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V 				<span style=color:#719e07>=</span> <span style=color:#2aa198>9</span>
 </span></span><span style=display:flex><span>    <span style=color:#719e07>def</span> <span style=color:#268bd2>initialize</span>(<span style=color:#268bd2>self</span>):
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W1 <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>random<span style=color:#719e07>.</span>uniform(<span style=color:#719e07>-</span><span style=color:#2aa198>1</span>, <span style=color:#2aa198>1</span>, (<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V))
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W2 <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>random<span style=color:#719e07>.</span>uniform(<span style=color:#719e07>-</span><span style=color:#2aa198>1</span>, <span style=color:#2aa198>1</span>, (<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden))
-</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W1 <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>random<span style=color:#719e07>.</span>uniform(<span style=color:#719e07>-</span><span style=color:#2aa198>1</span>, <span style=color:#2aa198>1</span>, (<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V))
+</span></span><span style=display:flex><span>		<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W2 <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>random<span style=color:#719e07>.</span>uniform(<span style=color:#719e07>-</span><span style=color:#2aa198>1</span>, <span style=color:#2aa198>1</span>, (<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden))
 </span></span><span style=display:flex><span>    <span style=color:#719e07>def</span> <span style=color:#268bd2>feed_forward</span>(<span style=color:#268bd2>self</span>,x):
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden 	<span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>dot(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W1, x)<span style=color:#719e07>.</span>reshape(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden_size, <span style=color:#2aa198>1</span>) <span style=color:#586e75># (2 x 9) x (9 x 1) = 2 x 1</span>
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>output 	<span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>dot(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W2, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden) <span style=color:#586e75># (9 x 2) x (2 x 1) = 9 x 1</span>
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>yhat 		<span style=color:#719e07>=</span> softmax(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>output) <span style=color:#586e75># 9 x 1</span>
+</span></span><span style=display:flex><span>		<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden 	<span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>dot(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W1, x)<span style=color:#719e07>.</span>reshape(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden_size, <span style=color:#2aa198>1</span>) <span style=color:#586e75># (2 x 9) x (9 x 1) = 2 x 1</span>
+</span></span><span style=display:flex><span>		<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>output 	<span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>dot(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W2, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden) <span style=color:#586e75># (9 x 2) x (2 x 1) = 9 x 1</span>
+</span></span><span style=display:flex><span>		<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>yhat 		<span style=color:#719e07>=</span> softmax(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>output) <span style=color:#586e75># 9 x 1</span>
 </span></span><span style=display:flex><span>        <span style=color:#719e07>return</span> <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>yhat
 </span></span></code></pre></div><p><strong>Loss function.</strong> Minimize the cross-entropy is equivalent to maximize the log-likelihood function;
 \begin{align*}
@@ -231,7 +229,7 @@ where $y_{\textcolor{Cerulean}{\text{context}}}=1$ if $\textcolor{Cerulean}{\tex
 \vdots\\
 0
 \end{bmatrix}\\
-\frac{\partial J(W_1,W_2)}{\partial v_{\textcolor{red}{\text{center}}}}
+\frac{\partial J}{\partial v_{\textcolor{red}{\text{center}}}}
 =&-\sum_{\textcolor{Cerulean}{\text{context}}\in V}I(y_{\textcolor{Cerulean}{\text{context}}}=1)u_{\textcolor{Cerulean}{\text{word}}}\\
 &+\sum_{\textcolor{Cerulean}{\text{context}}\in V} u_{\textcolor{Cerulean}{\text{context}}}\hat y_{\textcolor{Cerulean}{\text{context}}}
 \end{align*}
