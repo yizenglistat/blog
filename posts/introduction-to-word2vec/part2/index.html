@@ -228,61 +228,61 @@ J
 =&-y+C\hat yv_{\textcolor{red}{\text{center}}}^\top=(C\hat y-y)v_{\textcolor{red}{\text{center}}}^\top
 \end{align*}</p><p>where</p><p>$$
 C=\sum_{\textcolor{Cerulean}{\text{context}}\in V}y_{\textcolor{Cerulean}{\text{context}}}
-$$</p><p><strong>Implementations in python.</strong> Combining the feedforward and gradients, we are able to train the model given a dataset by using stochastic gradient desent.</p><p>Only trained for 100 epoches but it is kind of cool! You can play the code or notebook yourself: <a href=https://github.com/yizenglistat/blogsource/blob/master/content/posts/introduction-to-word2vec/part2/word2vec-toy.py>word2vec-toy.py</a> and <a href=https://github.com/yizenglistat/blogsource/blob/master/content/posts/introduction-to-word2vec/part2/word2vec-toy.ipynb>word2vec-toy.ipynb</a>.</p><div class=highlight><pre tabindex=0 style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#719e07>import</span> numpy <span style=color:#719e07>as</span> np
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#586e75># our softmax function</span>
-</span></span><span style=display:flex><span><span style=color:#719e07>def</span> <span style=color:#268bd2>softmax</span>(x):
-</span></span><span style=display:flex><span>    e_x <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>exp(x)
-</span></span><span style=display:flex><span>    <span style=color:#719e07>return</span> e_x <span style=color:#719e07>/</span> e_x<span style=color:#719e07>.</span>sum()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#586e75># word2vec, Skip-Gram, model</span>
-</span></span><span style=display:flex><span><span style=color:#719e07>class</span> <span style=color:#268bd2>word2vec</span>:
-</span></span><span style=display:flex><span>    <span style=color:#719e07>def</span> __init__(<span style=color:#268bd2>self</span>):
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden_size <span style=color:#719e07>=</span> <span style=color:#2aa198>2</span>
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>X_train <span style=color:#719e07>=</span> []
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>y_train <span style=color:#719e07>=</span> []
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>window_size <span style=color:#719e07>=</span> <span style=color:#2aa198>1</span>
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>learning_rate <span style=color:#719e07>=</span> <span style=color:#2aa198>0.001</span>
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>words <span style=color:#719e07>=</span> []
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>word_index <span style=color:#719e07>=</span> {}
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>    <span style=color:#719e07>def</span> <span style=color:#268bd2>inital</span>(<span style=color:#268bd2>self</span>,V,data):
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V <span style=color:#719e07>=</span> V
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W1 <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>random<span style=color:#719e07>.</span>uniform(<span style=color:#719e07>-</span><span style=color:#2aa198>0.8</span>, <span style=color:#2aa198>0.8</span>, (<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden_size, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V))
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W2 <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>random<span style=color:#719e07>.</span>uniform(<span style=color:#719e07>-</span><span style=color:#2aa198>0.8</span>, <span style=color:#2aa198>0.8</span>, (<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden_size))
-</span></span><span style=display:flex><span>          
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>words <span style=color:#719e07>=</span> data
-</span></span><span style=display:flex><span>        <span style=color:#719e07>for</span> i <span style=color:#719e07>in</span> <span style=color:#b58900>range</span>(<span style=color:#b58900>len</span>(data)):
-</span></span><span style=display:flex><span>            <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>word_index[data[i]] <span style=color:#719e07>=</span> i
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#719e07>def</span> <span style=color:#268bd2>forward</span>(<span style=color:#268bd2>self</span>, x):
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>center <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>dot(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W1, x)<span style=color:#719e07>.</span>reshape(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>hidden_size, <span style=color:#2aa198>1</span>)
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>output <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>dot(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W2, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>center)
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>yhat <span style=color:#719e07>=</span> softmax(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>output)
-</span></span><span style=display:flex><span>        <span style=color:#719e07>return</span> <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>yhat
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#719e07>def</span> <span style=color:#268bd2>backward</span>(<span style=color:#268bd2>self</span>, x, y):
-</span></span><span style=display:flex><span>        <span style=color:#586e75># for W1</span>
-</span></span><span style=display:flex><span>        dJ_dW1 <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>dot(np<span style=color:#719e07>.</span>dot(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W2<span style=color:#719e07>.</span>T, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>yhat <span style=color:#719e07>-</span> y), x<span style=color:#719e07>.</span>T)
-</span></span><span style=display:flex><span>        <span style=color:#586e75># for W2</span>
-</span></span><span style=display:flex><span>        C <span style=color:#719e07>=</span> y<span style=color:#719e07>.</span>sum()
-</span></span><span style=display:flex><span>        dJ_dW2 <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>dot(C<span style=color:#719e07>*</span><span style=color:#268bd2>self</span><span style=color:#719e07>.</span>yhat <span style=color:#719e07>-</span> y, <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>center<span style=color:#719e07>.</span>T)
-</span></span><span style=display:flex><span>        <span style=color:#586e75># update</span>
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W1 <span style=color:#719e07>=</span> <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W1 <span style=color:#719e07>-</span> <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>learning_rate <span style=color:#719e07>*</span> dJ_dW1
-</span></span><span style=display:flex><span>        <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W2 <span style=color:#719e07>=</span> <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>W2 <span style=color:#719e07>-</span> <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>learning_rate <span style=color:#719e07>*</span> dJ_dW2
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#719e07>def</span> <span style=color:#268bd2>train</span>(<span style=color:#268bd2>self</span>, max_epochs):
-</span></span><span style=display:flex><span>        <span style=color:#719e07>for</span> epoch <span style=color:#719e07>in</span> <span style=color:#b58900>range</span>(<span style=color:#2aa198>1</span>, max_epochs):       
-</span></span><span style=display:flex><span>            <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>loss <span style=color:#719e07>=</span> <span style=color:#2aa198>0</span>
-</span></span><span style=display:flex><span>            <span style=color:#719e07>for</span> t <span style=color:#719e07>in</span> <span style=color:#b58900>range</span>(<span style=color:#b58900>len</span>(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>X_train)):
-</span></span><span style=display:flex><span>                x <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>array(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>X_train)[t]<span style=color:#719e07>.</span>reshape(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V, <span style=color:#2aa198>1</span>)
-</span></span><span style=display:flex><span>                y <span style=color:#719e07>=</span> np<span style=color:#719e07>.</span>array(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>y_train)[t]<span style=color:#719e07>.</span>reshape(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>V, <span style=color:#2aa198>1</span>)
-</span></span><span style=display:flex><span>                <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>forward(x)
-</span></span><span style=display:flex><span>                <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>backward(x, y)
-</span></span><span style=display:flex><span>                <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>loss <span style=color:#719e07>+=</span> <span style=color:#719e07>-</span><span style=color:#2aa198>1</span><span style=color:#719e07>*</span>np<span style=color:#719e07>.</span>dot(y<span style=color:#719e07>.</span>T, np<span style=color:#719e07>.</span>log(<span style=color:#268bd2>self</span><span style=color:#719e07>.</span>yhat))<span style=color:#719e07>.</span>reshape(<span style=color:#2aa198>1</span>,)[<span style=color:#2aa198>0</span>]
-</span></span><span style=display:flex><span>            <span style=color:#b58900>print</span>(<span style=color:#2aa198>f</span><span style=color:#2aa198>&#34;epoch=</span><span style=color:#2aa198>{</span>epoch<span style=color:#2aa198>}</span><span style=color:#2aa198> with loss=</span><span style=color:#2aa198>{</span><span style=color:#268bd2>self</span><span style=color:#719e07>.</span>loss<span style=color:#2aa198>}</span><span style=color:#2aa198>&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#268bd2>self</span><span style=color:#719e07>.</span>learning_rate <span style=color:#719e07>*=</span> <span style=color:#2aa198>1</span><span style=color:#719e07>/</span>( (<span style=color:#2aa198>1</span><span style=color:#719e07>+</span><span style=color:#268bd2>self</span><span style=color:#719e07>.</span>learning_rate<span style=color:#719e07>*</span>epoch))
-</span></span></code></pre></div><pre tabindex=0><code>epoch=1 with loss=55.09354880947808
+$$</p><p><strong>Implementations in python.</strong> Combining the feedforward and gradients, we are able to train the model given a dataset by using stochastic gradient desent.</p><p>Only trained for 100 epoches but it is kind of cool! You can play the code or notebook yourself: <a href=https://github.com/yizenglistat/blogsource/blob/master/content/posts/introduction-to-word2vec/part2/word2vec-toy.py>word2vec-toy.py</a> and <a href=https://github.com/yizenglistat/blogsource/blob/master/content/posts/introduction-to-word2vec/part2/word2vec-toy.ipynb>word2vec-toy.ipynb</a>.</p><pre tabindex=0><code>import numpy as np
+
+# our softmax function
+def softmax(x):
+    e_x = np.exp(x)
+    return e_x / e_x.sum()
+
+# word2vec, Skip-Gram, model
+class word2vec:
+    def __init__(self):
+        self.hidden_size = 2
+        self.X_train = []
+        self.y_train = []
+        self.window_size = 1
+        self.learning_rate = 0.001
+        self.words = []
+        self.word_index = {}
+  
+    def inital(self,V,data):
+        self.V = V
+        self.W1 = np.random.uniform(-0.8, 0.8, (self.hidden_size, self.V))
+        self.W2 = np.random.uniform(-0.8, 0.8, (self.V, self.hidden_size))
+          
+        self.words = data
+        for i in range(len(data)):
+            self.word_index[data[i]] = i
+
+    def forward(self, x):
+        self.center = np.dot(self.W1, x).reshape(self.hidden_size, 1)
+        self.output = np.dot(self.W2, self.center)
+        self.yhat = softmax(self.output)
+        return self.yhat
+
+    def backward(self, x, y):
+        # for W1
+        dJ_dW1 = np.dot(np.dot(self.W2.T, self.yhat - y), x.T)
+        # for W2
+        C = y.sum()
+        dJ_dW2 = np.dot(C*self.yhat - y, self.center.T)
+        # update
+        self.W1 = self.W1 - self.learning_rate * dJ_dW1
+        self.W2 = self.W2 - self.learning_rate * dJ_dW2
+
+    def train(self, max_epochs):
+        for epoch in range(1, max_epochs):       
+            self.loss = 0
+            for t in range(len(self.X_train)):
+                x = np.array(self.X_train)[t].reshape(self.V, 1)
+                y = np.array(self.y_train)[t].reshape(self.V, 1)
+                self.forward(x)
+                self.backward(x, y)
+                self.loss += -1*np.dot(y.T, np.log(self.yhat)).reshape(1,)[0]
+            print(f&#34;epoch={epoch} with loss={self.loss}&#34;)
+            self.learning_rate *= 1/( (1+self.learning_rate*epoch))
+</code></pre><pre tabindex=0><code>epoch=1 with loss=55.09354880947808
 epoch=2 with loss=55.064578930077715
 epoch=3 with loss=55.035757463479
 epoch=4 with loss=55.00711108927134
