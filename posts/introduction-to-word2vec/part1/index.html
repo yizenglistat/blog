@@ -121,7 +121,7 @@ V&=
 \end{bmatrix}
 \end{align*}
 The next step is to determine how much contextual information you want, which is controlled by the $\textcolor{BurntOrange}{\text{window}}$ size $m$. In this example, let $m=1$ for simplicity. Now at every position of word in the corpus, $t=1,2,\ldots,T$ with here $T=14$, we will focus on the $\textcolor{BurntOrange}{\text{window}}$ with <strong>at most</strong> $2m+1$ words since at the start/end of sentence, the $\textcolor{BurntOrange}{\text{window}}$ will be <strong>trimmed</strong> in word2vec.</p><div class=fig-center>
-<img src=word2vec-fig1.png alt=word2vec-fig1 decoding=async>
+<img src=word2vec-fig1.png alt=word2vec-fig1 decoding=async style=width:80%>
 </div><p>In the figure shown above, The highlighted band is referred to $\textcolor{BurntOrange}{\text{window}}$, in which the red word is called $\textcolor{red}{\text{center}}$ word and blue word is called $\textcolor{Cerulean}{\text{context}}$.</p><p>Suppose we now have the probability of $w_{t-1}$ given $w_t$ and the probability of $w_{t+1}$ given $w_t$;
 $$\text{Pr}(w_{t-1}\mid w_t)\text{ and }\text{Pr}(w_{t+1}\mid w_t),$$
 A natural way in statistics is to maximize the likelihood function
@@ -202,7 +202,7 @@ $$
 $$
 and consequently we could calculate our loss function $J(\boldsymbol{\theta})$ given $\boldsymbol{\theta}$. If so, we could just initilize $\boldsymbol{\theta}$ by some random initialization and use stochastic gradient descent algorithm to update $\boldsymbol{\theta}$ one window at a time.</p><blockquote>
 <p><strong>Remark.</strong> In vanilla gradient descent, updating $\boldsymbol\theta$ until we&rsquo;ve seen all words will take a super long time (imagine you have billions of words) so in practice we would like to update $\boldsymbol\theta$ for a batch of windows. It is called stochastic or mini-batch gradient gescent.</p></blockquote><p>Let&rsquo;s get to the derivative part to find the optimal $\boldsymbol\theta$.</p><div class=fig-center>
-<img src=word2vec-fig2.png alt=word2vec-fig2 decoding=async>
+<img src=word2vec-fig2.png alt=word2vec-fig2 decoding=async style=width:80%>
 </div><p><strong>At position/timestep $t=1$</strong>, our one-window loss function will be
 \begin{align*}
 J(\boldsymbol\theta)
@@ -283,7 +283,7 @@ u_{\textcolor{Cerulean}{\text{now}}}
 \frac{\partial J(\boldsymbol\theta)}{\partial u_{\textcolor{Cerulean}{\text{now}}}}\\
 \end{bmatrix}
 \end{align*}</p><div class=fig-center>
-<img src=word2vec-fig3.png alt=word2vec-fig3 decoding=async>
+<img src=word2vec-fig3.png alt=word2vec-fig3 decoding=async style=width:80%>
 </div><p><strong>At position/timestep $t=2$</strong>, our loss function will be
 \begin{align*}
 J(\boldsymbol\theta)
